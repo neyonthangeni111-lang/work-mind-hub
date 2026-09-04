@@ -20,6 +20,7 @@ import { Route as AppLabourCasesRouteImport } from './routes/app/labour-cases'
 import { Route as AppMeetingsRouteImport } from './routes/app/meetings'
 import { Route as AppPsychologyRouteImport } from './routes/app/psychology'
 import { Route as AppReportsRouteImport } from './routes/app/reports'
+import { Route as AppResponsibleAiRouteImport } from './routes/app/responsible-ai'
 import { Route as AppSavedRouteImport } from './routes/app/saved'
 import { Route as AppSettingsRouteImport } from './routes/app/settings'
 import { Route as AppTasksRouteImport } from './routes/app/tasks'
@@ -79,6 +80,11 @@ const AppReportsRoute = AppReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => AppRoute,
 } as any)
+const AppResponsibleAiRoute = AppResponsibleAiRouteImport.update({
+  id: '/responsible-ai',
+  path: '/responsible-ai',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSavedRoute = AppSavedRouteImport.update({
   id: '/saved',
   path: '/saved',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/app/meetings': typeof AppMeetingsRoute
   '/app/psychology': typeof AppPsychologyRoute
   '/app/reports': typeof AppReportsRoute
+  '/app/responsible-ai': typeof AppResponsibleAiRoute
   '/app/saved': typeof AppSavedRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/tasks': typeof AppTasksRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/app/meetings': typeof AppMeetingsRoute
   '/app/psychology': typeof AppPsychologyRoute
   '/app/reports': typeof AppReportsRoute
+  '/app/responsible-ai': typeof AppResponsibleAiRoute
   '/app/saved': typeof AppSavedRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/tasks': typeof AppTasksRoute
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/app/meetings': typeof AppMeetingsRoute
   '/app/psychology': typeof AppPsychologyRoute
   '/app/reports': typeof AppReportsRoute
+  '/app/responsible-ai': typeof AppResponsibleAiRoute
   '/app/saved': typeof AppSavedRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/tasks': typeof AppTasksRoute
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/app/meetings'
     | '/app/psychology'
     | '/app/reports'
+    | '/app/responsible-ai'
     | '/app/saved'
     | '/app/settings'
     | '/app/tasks'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/app/meetings'
     | '/app/psychology'
     | '/app/reports'
+    | '/app/responsible-ai'
     | '/app/saved'
     | '/app/settings'
     | '/app/tasks'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/app/meetings'
     | '/app/psychology'
     | '/app/reports'
+    | '/app/responsible-ai'
     | '/app/saved'
     | '/app/settings'
     | '/app/tasks'
@@ -277,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppReportsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/responsible-ai': {
+      id: '/app/responsible-ai'
+      path: '/responsible-ai'
+      fullPath: '/app/responsible-ai'
+      preLoaderRoute: typeof AppResponsibleAiRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/saved': {
       id: '/app/saved'
       path: '/saved'
@@ -310,6 +329,7 @@ interface AppRouteChildren {
   AppMeetingsRoute: typeof AppMeetingsRoute
   AppPsychologyRoute: typeof AppPsychologyRoute
   AppReportsRoute: typeof AppReportsRoute
+  AppResponsibleAiRoute: typeof AppResponsibleAiRoute
   AppSavedRoute: typeof AppSavedRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppTasksRoute: typeof AppTasksRoute
@@ -325,6 +345,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppMeetingsRoute: AppMeetingsRoute,
   AppPsychologyRoute: AppPsychologyRoute,
   AppReportsRoute: AppReportsRoute,
+  AppResponsibleAiRoute: AppResponsibleAiRoute,
   AppSavedRoute: AppSavedRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppTasksRoute: AppTasksRoute,
