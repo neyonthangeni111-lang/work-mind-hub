@@ -21,6 +21,7 @@ import { Route as AppMeetingsRouteImport } from './routes/app/meetings'
 import { Route as AppPsychologyRouteImport } from './routes/app/psychology'
 import { Route as AppReportsRouteImport } from './routes/app/reports'
 import { Route as AppSavedRouteImport } from './routes/app/saved'
+import { Route as AppSettingsRouteImport } from './routes/app/settings'
 import { Route as AppTasksRouteImport } from './routes/app/tasks'
 
 const IndexRoute = IndexRouteImport.update({
@@ -83,6 +84,11 @@ const AppSavedRoute = AppSavedRouteImport.update({
   path: '/saved',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppTasksRoute = AppTasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/app/psychology': typeof AppPsychologyRoute
   '/app/reports': typeof AppReportsRoute
   '/app/saved': typeof AppSavedRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/': typeof AppIndexRoute
 }
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/app/psychology': typeof AppPsychologyRoute
   '/app/reports': typeof AppReportsRoute
   '/app/saved': typeof AppSavedRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/tasks': typeof AppTasksRoute
   '/app': typeof AppIndexRoute
 }
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/app/psychology': typeof AppPsychologyRoute
   '/app/reports': typeof AppReportsRoute
   '/app/saved': typeof AppSavedRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/': typeof AppIndexRoute
 }
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/app/psychology'
     | '/app/reports'
     | '/app/saved'
+    | '/app/settings'
     | '/app/tasks'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/app/psychology'
     | '/app/reports'
     | '/app/saved'
+    | '/app/settings'
     | '/app/tasks'
     | '/app'
   id:
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/app/psychology'
     | '/app/reports'
     | '/app/saved'
+    | '/app/settings'
     | '/app/tasks'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -272,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSavedRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/tasks': {
       id: '/app/tasks'
       path: '/tasks'
@@ -292,6 +311,7 @@ interface AppRouteChildren {
   AppPsychologyRoute: typeof AppPsychologyRoute
   AppReportsRoute: typeof AppReportsRoute
   AppSavedRoute: typeof AppSavedRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppTasksRoute: typeof AppTasksRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -306,6 +326,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppPsychologyRoute: AppPsychologyRoute,
   AppReportsRoute: AppReportsRoute,
   AppSavedRoute: AppSavedRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppTasksRoute: AppTasksRoute,
   AppIndexRoute: AppIndexRoute,
 }
