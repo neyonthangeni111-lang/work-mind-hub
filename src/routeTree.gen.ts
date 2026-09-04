@@ -10,33 +10,156 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppConflictRouteImport } from './routes/app/conflict'
+import { Route as AppEmailRouteImport } from './routes/app/email'
+import { Route as AppEmployeeRelationsRouteImport } from './routes/app/employee-relations'
+import { Route as AppLabourCasesRouteImport } from './routes/app/labour-cases'
+import { Route as AppMeetingsRouteImport } from './routes/app/meetings'
+import { Route as AppPsychologyRouteImport } from './routes/app/psychology'
+import { Route as AppReportsRouteImport } from './routes/app/reports'
+import { Route as AppTasksRouteImport } from './routes/app/tasks'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConflictRoute = AppConflictRouteImport.update({
+  id: '/conflict',
+  path: '/conflict',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmailRoute = AppEmailRouteImport.update({
+  id: '/email',
+  path: '/email',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmployeeRelationsRoute = AppEmployeeRelationsRouteImport.update({
+  id: '/employee-relations',
+  path: '/employee-relations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLabourCasesRoute = AppLabourCasesRouteImport.update({
+  id: '/labour-cases',
+  path: '/labour-cases',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMeetingsRoute = AppMeetingsRouteImport.update({
+  id: '/meetings',
+  path: '/meetings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPsychologyRoute = AppPsychologyRouteImport.update({
+  id: '/psychology',
+  path: '/psychology',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTasksRoute = AppTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/conflict': typeof AppConflictRoute
+  '/app/email': typeof AppEmailRoute
+  '/app/employee-relations': typeof AppEmployeeRelationsRoute
+  '/app/labour-cases': typeof AppLabourCasesRoute
+  '/app/meetings': typeof AppMeetingsRoute
+  '/app/psychology': typeof AppPsychologyRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/tasks': typeof AppTasksRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/conflict': typeof AppConflictRoute
+  '/app/email': typeof AppEmailRoute
+  '/app/employee-relations': typeof AppEmployeeRelationsRoute
+  '/app/labour-cases': typeof AppLabourCasesRoute
+  '/app/meetings': typeof AppMeetingsRoute
+  '/app/psychology': typeof AppPsychologyRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/tasks': typeof AppTasksRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/conflict': typeof AppConflictRoute
+  '/app/email': typeof AppEmailRoute
+  '/app/employee-relations': typeof AppEmployeeRelationsRoute
+  '/app/labour-cases': typeof AppLabourCasesRoute
+  '/app/meetings': typeof AppMeetingsRoute
+  '/app/psychology': typeof AppPsychologyRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/tasks': typeof AppTasksRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/conflict'
+    | '/app/email'
+    | '/app/employee-relations'
+    | '/app/labour-cases'
+    | '/app/meetings'
+    | '/app/psychology'
+    | '/app/reports'
+    | '/app/tasks'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app/conflict'
+    | '/app/email'
+    | '/app/employee-relations'
+    | '/app/labour-cases'
+    | '/app/meetings'
+    | '/app/psychology'
+    | '/app/reports'
+    | '/app/tasks'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/conflict'
+    | '/app/email'
+    | '/app/employee-relations'
+    | '/app/labour-cases'
+    | '/app/meetings'
+    | '/app/psychology'
+    | '/app/reports'
+    | '/app/tasks'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +171,108 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/conflict': {
+      id: '/app/conflict'
+      path: '/conflict'
+      fullPath: '/app/conflict'
+      preLoaderRoute: typeof AppConflictRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/email': {
+      id: '/app/email'
+      path: '/email'
+      fullPath: '/app/email'
+      preLoaderRoute: typeof AppEmailRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/employee-relations': {
+      id: '/app/employee-relations'
+      path: '/employee-relations'
+      fullPath: '/app/employee-relations'
+      preLoaderRoute: typeof AppEmployeeRelationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/labour-cases': {
+      id: '/app/labour-cases'
+      path: '/labour-cases'
+      fullPath: '/app/labour-cases'
+      preLoaderRoute: typeof AppLabourCasesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/meetings': {
+      id: '/app/meetings'
+      path: '/meetings'
+      fullPath: '/app/meetings'
+      preLoaderRoute: typeof AppMeetingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/psychology': {
+      id: '/app/psychology'
+      path: '/psychology'
+      fullPath: '/app/psychology'
+      preLoaderRoute: typeof AppPsychologyRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tasks': {
+      id: '/app/tasks'
+      path: '/tasks'
+      fullPath: '/app/tasks'
+      preLoaderRoute: typeof AppTasksRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppConflictRoute: typeof AppConflictRoute
+  AppEmailRoute: typeof AppEmailRoute
+  AppEmployeeRelationsRoute: typeof AppEmployeeRelationsRoute
+  AppLabourCasesRoute: typeof AppLabourCasesRoute
+  AppMeetingsRoute: typeof AppMeetingsRoute
+  AppPsychologyRoute: typeof AppPsychologyRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppTasksRoute: typeof AppTasksRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppConflictRoute: AppConflictRoute,
+  AppEmailRoute: AppEmailRoute,
+  AppEmployeeRelationsRoute: AppEmployeeRelationsRoute,
+  AppLabourCasesRoute: AppLabourCasesRoute,
+  AppMeetingsRoute: AppMeetingsRoute,
+  AppPsychologyRoute: AppPsychologyRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppTasksRoute: AppTasksRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
