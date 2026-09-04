@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppCalendarRouteImport } from './routes/app/calendar'
 import { Route as AppConflictRouteImport } from './routes/app/conflict'
 import { Route as AppEmailRouteImport } from './routes/app/email'
 import { Route as AppEmployeeRelationsRouteImport } from './routes/app/employee-relations'
@@ -34,6 +35,11 @@ const AppRoute = AppRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => AppRoute,
 } as any)
 const AppConflictRoute = AppConflictRouteImport.update({
@@ -80,6 +86,7 @@ const AppTasksRoute = AppTasksRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/calendar': typeof AppCalendarRoute
   '/app/conflict': typeof AppConflictRoute
   '/app/email': typeof AppEmailRoute
   '/app/employee-relations': typeof AppEmployeeRelationsRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/calendar': typeof AppCalendarRoute
   '/app/conflict': typeof AppConflictRoute
   '/app/email': typeof AppEmailRoute
   '/app/employee-relations': typeof AppEmployeeRelationsRoute
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/calendar': typeof AppCalendarRoute
   '/app/conflict': typeof AppConflictRoute
   '/app/email': typeof AppEmailRoute
   '/app/employee-relations': typeof AppEmployeeRelationsRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/calendar'
     | '/app/conflict'
     | '/app/email'
     | '/app/employee-relations'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/calendar'
     | '/app/conflict'
     | '/app/email'
     | '/app/employee-relations'
@@ -146,6 +157,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/app/calendar'
     | '/app/conflict'
     | '/app/email'
     | '/app/employee-relations'
@@ -183,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/calendar': {
+      id: '/app/calendar'
+      path: '/calendar'
+      fullPath: '/app/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/conflict': {
@@ -245,6 +264,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppCalendarRoute: typeof AppCalendarRoute
   AppConflictRoute: typeof AppConflictRoute
   AppEmailRoute: typeof AppEmailRoute
   AppEmployeeRelationsRoute: typeof AppEmployeeRelationsRoute
@@ -257,6 +277,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCalendarRoute: AppCalendarRoute,
   AppConflictRoute: AppConflictRoute,
   AppEmailRoute: AppEmailRoute,
   AppEmployeeRelationsRoute: AppEmployeeRelationsRoute,
